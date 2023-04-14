@@ -1,0 +1,81 @@
+<html>
+<head>
+<title>Tabify | Best App For Chrome Tabs</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+<center>
+  <h1>
+  Tabify
+  </h1>
+  <h1 class="t2">
+  Best App For Chrome Tabs
+  </h1>
+  <br>
+  <br>
+  <h1>
+  How many Tabs do you want to Open?
+  </h1>
+  <input id="tabs" type="number" value="1" min="1"> Tabs
+  <br>
+  <br>
+  <button id="open">
+  Open 1 Tab
+  </button>
+  <div style="position:relative; left:-20px;">
+    <h3>
+  URL for tab
+  </h3>
+    <input type="radio" name="choice" value="default" checked> Default | <input type="radio" name="choice" value="custom"> Custom <input id="URLbox" type="text" style="color:black; display:none;" placeholder="URL Here"> <h3 id="dih" style="display:none;">
+  Dont include https
+  </h3>
+  </div>
+</center>
+<script>
+var tabs = document.getElementById("tabs");
+var open = document.getElementById("open");
+var tabss = 1;
+var choice = document.getElementsByName("choice");
+var URL = "example.com";
+var URLBOX = document.getElementById("URLbox");
+var donti = document.getElementById("dih");
+
+open.addEventListener("click", function(){
+for(let i = 0; i < tabss; i++){
+  var a = document.createElement("a");
+  a.href = "https://" + URL;
+  a.target = "_blank";
+  a.click();
+}
+});
+tabs.addEventListener("input", function(){
+tabss = tabs.value;
+if(tabss > 1){
+open.textContent = "Open " + tabss + " Tabs";
+}else if(tabss < 2){
+open.textContent = "Open " + tabss + " Tab";
+}else if(tabss < 1){
+open.textContent = "Open " + tabss + " Tabs";
+}
+});
+for(let a = 0; a < choice.length; a++){
+choice[a].addEventListener("change", function(){
+if(choice[a].checked && choice[a].value === "default"){
+URL = "example.com";
+URLbox.style.display = "none";
+URLbox.value = "";
+donti.style.display = "none";
+}
+if(choice[a].checked && choice[a].value === "custom"){
+URLbox.style.display = "block";
+donti.style.display = "block";
+URLbox.addEventListener("input", function(){
+URL = URLbox.value;
+});
+}
+});
+}
+</script>
+</body>
+</html>
